@@ -8,7 +8,7 @@ const PasswordSchema = Yup.object().shape({
   passwordLength: Yup.number()
     .min(4, 'Should be minimum 4')
     .max(16, 'Should no more longer than 16')
-    .required('This is required'),
+    .required('This is required, Define Length'),
 });
 const App = () => {
   const [password, setPassword] = useState('');
