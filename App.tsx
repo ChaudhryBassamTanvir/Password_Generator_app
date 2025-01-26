@@ -18,8 +18,20 @@ const App = () => {
   const [symbols, setsymbols] = useState(false);
   const [isPasswordGenerated, setIsPasswordGenerated] = useState(false);
 
-  const generatePasswordString = (passwordLength: number) => {};
+  const generatePasswordString = (passwordLength: number) => {
+    let characterList = '';
+    const upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+    const digiChars = '0123456789';
+    const specialChars = '!@#$%^&*()_+';
+  };
   const createPassword = (characters: string, passwordLength: number) => {
+    let result = '';
+    for (let index = 0; index < passwordLength; index++) {
+      const characterIndex = Math.round(Math.random() * characters.length);
+
+      result += characters.charAt(characterIndex);
+    }
     //
   };
   const resetPasswordState = () => {
