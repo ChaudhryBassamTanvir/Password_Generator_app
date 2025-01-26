@@ -24,6 +24,23 @@ const App = () => {
     const lowerCase = 'abcdefghijklmnopqrstuvwxyz';
     const digiChars = '0123456789';
     const specialChars = '!@#$%^&*()_+';
+
+    if (upperCase) {
+      characterList += upperCase;
+    }
+    if (lowerCase) {
+      characterList += lowerCase;
+    }
+    if (numbers) {
+      characterList += numbers;
+    }
+    if (symbols) {
+      characterList += symbols;
+    }
+
+    const passwordResult: any = createPassword(characterList, passwordLength);
+    setPassword(passwordResult);
+    setIsPasswordGenerated(true);
   };
   const createPassword = (characters: string, passwordLength: number) => {
     let result = '';
@@ -37,6 +54,10 @@ const App = () => {
   const resetPasswordState = () => {
     setIsPasswordGenerated(false);
     setPassword('');
+    setlowerCase(false);
+    setupperCase(false);
+    setnumbers(false);
+    setsymbols(false);
   };
 
   return (
