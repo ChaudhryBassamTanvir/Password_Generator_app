@@ -1,5 +1,13 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
+import {Formik} from 'formik';
 
 //Form Validation
 import * as Yup from 'yup';
@@ -12,7 +20,7 @@ const PasswordSchema = Yup.object().shape({
 });
 const App = () => {
   const [password, setPassword] = useState('');
-  const [lowerCase, setlowerCase] = useState(true);
+  const [lowerCaseChars, setlowerCaseChars] = useState(true);
   const [upperCaseChars, setupperCaseChars] = useState(false);
   const [numbers, setnumbers] = useState(false);
   const [symbols, setsymbols] = useState(false);
@@ -21,15 +29,15 @@ const App = () => {
   const generatePasswordString = (passwordLength: number) => {
     let characterList = '';
     const upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+    const lowerCaseChars = 'abcdefghijklmnopqrstuvwxyz';
     const digiChars = '0123456789';
     const specialChars = '!@#$%^&*()_+';
 
     if (upperCaseChars) {
       characterList += upperCaseChars;
     }
-    if (lowerCase) {
-      characterList += lowerCase;
+    if (lowerCaseChars) {
+      characterList += lowerCaseChars;
     }
     if (numbers) {
       characterList += numbers;
@@ -54,19 +62,67 @@ const App = () => {
   const resetPasswordState = () => {
     setIsPasswordGenerated(false);
     setPassword('');
-    setlowerCase(false);
+    setlowerCaseChars(false);
     setupperCaseChars(false);
     setnumbers(false);
     setsymbols(false);
   };
 
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <ScrollView keyboardShouldPersistTaps="handled">
+      <SafeAreaView style={styles.appContainer}>
+        <View style={styles.formContainer}>
+          <Text style={styles.title}>Password Generator</Text>
+
+          <Formik
+            initialValues={{passwordLength: ''}}
+            validationSchema={PasswordSchema}
+            onSubmit={values => {
+              console.log('Values are', values);
+
+              //both are same down have same meaning
+              // generatePasswordString(Number(values.passwordLength));
+              generatePasswordString(+values.passwordLength);
+            }}>
+            {({
+              values,
+              errors,
+              touched,
+              isValid,
+              handleChange,
+              handleReset,
+
+              handleSubmit,
+              isSubmitting,
+              /* and other goodies */
+            }) => (
+              <>
+                <View style={styles.inputWrapper}></View>
+                <View style={styles.inputWrapper}></View>
+                <View style={styles.inputWrapper}></View>
+                <View style={styles.inputWrapper}></View>
+                <View style={styles.inputWrapper}></View>
+
+                <View style={styles.formAction}></View>
+              </>
+            )}
+          </Formik>
+        </View>
+
+        <TouchableOpacity>Generate Password</TouchableOpacity>
+        <TouchableOpacity>Reset</TouchableOpacity>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
 export default App;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  appContainer: {},
+  formContainer: {},
+
+  title: {},
+  inputWrapper: {},
+  formAction: {},
+});
