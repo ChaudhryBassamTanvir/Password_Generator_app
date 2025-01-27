@@ -3,6 +3,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -97,7 +98,23 @@ const App = () => {
               /* and other goodies */
             }) => (
               <>
-                <View style={styles.inputWrapper}></View>
+                <View style={styles.inputWrapper}>
+                  <View style={styles.inputColumn}>
+                    <Text style={styles.heading}>Password Length</Text>
+                    {touched.passwordLength && errors.passwordLength && (
+                      <Text style={styles.errorText}>
+                        {errors.passwordLength}
+                      </Text>
+                    )}
+                    <TextInput
+                      style={styles.inputStyle}
+                      value={values.passwordLength}
+                      onChangeText={handleChange('passwordLength')}
+                      placeholder="Ex. 8"
+                      keyboardType="numeric"
+                    />
+                  </View>
+                </View>
                 <View style={styles.inputWrapper}></View>
                 <View style={styles.inputWrapper}></View>
                 <View style={styles.inputWrapper}></View>
@@ -109,8 +126,12 @@ const App = () => {
           </Formik>
         </View>
 
-        <TouchableOpacity>Generate Password</TouchableOpacity>
-        <TouchableOpacity>Reset</TouchableOpacity>
+        <TouchableOpacity>
+          <Text>Generate Password</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text>Reset</Text>
+        </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>
   );
@@ -125,4 +146,6 @@ const styles = StyleSheet.create({
   title: {},
   inputWrapper: {},
   formAction: {},
+  inputColumn: {},
+  inputStyle: {},
 });
