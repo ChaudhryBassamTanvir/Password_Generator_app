@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {Formik} from 'formik';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 //Form Validation
 import * as Yup from 'yup';
@@ -115,9 +116,29 @@ const App = () => {
                     />
                   </View>
                 </View>
-                <View style={styles.inputWrapper}></View>
-                <View style={styles.inputWrapper}></View>
-                <View style={styles.inputWrapper}></View>
+                <View style={styles.inputWrapper}>
+                  <Text style={styles.heading}>Include LowerCase </Text>
+
+                  <BouncyCheckbox
+                    isChecked={lowerCaseChars}
+                    onPress={() => setlowerCaseChars(!lowerCaseChars)}
+                    fillColor="#29AB87"
+                  />
+                </View>
+                <View style={styles.inputWrapper}>
+                  <BouncyCheckbox
+                    isChecked={upperCaseChars}
+                    onPress={() => setupperCaseChars(!upperCaseChars)}
+                    fillColor="#FF0000"
+                  />
+                </View>
+                <View style={styles.inputWrapper}>
+                  <BouncyCheckbox
+                    isChecked={upperCaseChars}
+                    onPress={() => setupperCaseChars(!upperCaseChars)}
+                    fillColor="#FF0000"
+                  />
+                </View>
                 <View style={styles.inputWrapper}></View>
 
                 <View style={styles.formAction}></View>
