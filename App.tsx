@@ -126,6 +126,7 @@ const App = () => {
                   />
                 </View>
                 <View style={styles.inputWrapper}>
+                  <Text style={styles.heading}>Include UpperCase </Text>
                   <BouncyCheckbox
                     isChecked={upperCaseChars}
                     onPress={() => setupperCaseChars(!upperCaseChars)}
@@ -133,26 +134,36 @@ const App = () => {
                   />
                 </View>
                 <View style={styles.inputWrapper}>
+                  <Text style={styles.heading}>Include numbers </Text>
                   <BouncyCheckbox
-                    isChecked={upperCaseChars}
-                    onPress={() => setupperCaseChars(!upperCaseChars)}
-                    fillColor="#FF0000"
+                    isChecked={numbers}
+                    onPress={() => setnumbers(!numbers)}
+                    fillColor="#FC80A5"
                   />
                 </View>
-                <View style={styles.inputWrapper}></View>
+                <View style={styles.inputWrapper}>
+                  <Text style={styles.heading}>
+                    Include symbols
+                    <BouncyCheckbox
+                      isChecked={symbols}
+                      onPress={() => setsymbols(!symbols)}
+                      fillColor="#FD8095"
+                    />
+                  </Text>
+                </View>
 
-                <View style={styles.formAction}></View>
+                <View style={styles.formAction}>
+                  <TouchableOpacity>
+                    <Text>Generate Password</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Text>Reset</Text>
+                  </TouchableOpacity>
+                </View>
               </>
             )}
           </Formik>
         </View>
-
-        <TouchableOpacity>
-          <Text>Generate Password</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Reset</Text>
-        </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>
   );
